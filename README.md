@@ -1,37 +1,36 @@
-# AI Real-Time Object Tracker
+# 🤖 AI Real-Time Object Tracker
 
 A user-friendly desktop application for real-time object tracking in a live webcam feed. This tool allows users to select an object with a bounding box and track its movement using various state-of-the-art tracking algorithms.
 
-  
-*(Replace the URL above with a real screenshot of your application)*
+![Application Demo](Animation.gif)
 
 ---
 
-## Features
+## ✨ Features
 
 - **Intuitive GUI:** A clean, modern interface built with `ttkbootstrap` guides the user through the process.
-- **Multiple Tracker Options:** Users can choose from seven different OpenCV tracking algorithms, including CSRT, KCF, and MOSSE.
+- **Multiple Tracker Options:** Users can choose from seven different OpenCV tracking algorithms.
 - **Real-Time Bounding Box:** The application draws a bounding box around the tracked object in real-time.
 - **Performance Metrics:** Displays the live Frames Per Second (FPS) to gauge performance.
 - **Status Updates:** Clearly indicates tracking success or failure on the video feed.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Language:** Python 3
 - **Core Vision Library:** OpenCV (`opencv-contrib-python`)
 - **GUI Framework:** Tkinter with `ttkbootstrap` for modern themes and widgets.
-- **Image Handling:** Pillow (`PIL`) for displaying the creator photo in the GUI.
+- **Image Handling:** Pillow (`PIL`) for displaying images in the GUI.
 
 ---
 
-## Deployment and Installation
+## 🚀 Deployment and Installation
 
 To run this application on your local machine, please follow these steps:
 
 1.  **Clone the Repository**
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/MohanadMetrash/Real-Time-Object-Tracker.git
+    cd Real-Time-Object-Tracker
     ```
 
 2.  **Create a Virtual Environment** (Recommended)
@@ -53,14 +52,11 @@ To run this application on your local machine, please follow these steps:
 
 ---
 
-## How to Use
+## 📖 How to Use
 
 1.  Launch the application. You will be greeted by the welcome screen.
 2.  Click **Continue to Setup**.
-3.  Select a tracking algorithm from the dropdown menu.
-    - **CSRT**: High accuracy, but slower. Recommended for best results.
-    - **KCF**: Good balance of speed and accuracy.
-    - **MOSSE**: Extremely fast, but less accurate.
+3.  Select a tracking algorithm from the dropdown menu. The app will provide a brief description for each one, read directly from this README!
 4.  Click **Launch Tracker**. Your webcam will activate.
 5.  In the webcam window, **click and drag** your mouse to draw a box around the object you wish to track.
 6.  Press **ENTER** or **SPACE** to confirm your selection.
@@ -68,17 +64,26 @@ To run this application on your local machine, please follow these steps:
 
 ---
 
-## Implementation Details
+## ⚙️ Algorithm Details
 
-This project is built on the robust computer vision capabilities of **OpenCV**. The core tracking functionality leverages algorithms available in the `cv2.legacy` module, providing a range of options to balance tracking accuracy and computational performance.
+The following trackers are available. Choose one based on your specific needs for speed versus accuracy.
 
-The application architecture separates the user interface from the core logic.
--   **GUI (`tkinter`, `ttkbootstrap`)**: A multi-frame `tkinter` structure provides a non-blocking, user-friendly experience. The `WelcomeScreen` onboards the user with instructions, while the `SetupScreen` allows for configuration.
--   **Tracking Logic (`OpenCV`)**: The `run_object_tracking` function encapsulates all computer vision operations. It handles video capture, user ROI selection (`cv2.selectROI`), and the real-time tracking loop (`tracker.update()`). This separation makes the code cleaner and easier to maintain.
+| Algorithm  | Description                                                                 |
+|------------|-----------------------------------------------------------------------------|
+| **CSRT**   | High accuracy and robust, but slower. The best choice for precision.        |
+| **KCF**    | Excellent balance of speed and accuracy. A great default choice.            |
+| **MOSSE**  | Blazing fast but less accurate. Use for high-speed, simple tracking.        |
+| **MIL**    | Good at handling partial occlusions, but can drift over time.               |
+| **BOOSTING**| Older algorithm based on AdaBoost. Slower and less reliable.                |
+| **TLD**    | Designed for long-term tracking; can recover from disappearances.          |
+| **MEDIANFLOW**| Best for slow, predictable motion. Fails with abrupt changes.               |
 
 ---
-## Recorded Demo
 
-[Link to your recorded demo video]
+## 📝 Implementation Details
 
-*(Record a short video showcasing the app's functionality and add the link here.)*
+This project is built on the robust computer vision capabilities of **OpenCV**. The core tracking functionality leverages algorithms available in the `cv2.legacy` module.
+
+The application architecture separates the user interface from the core logic:
+-   **GUI (`tkinter`, `ttkbootstrap`)**: A multi-frame `tkinter` structure provides a non-blocking, user-friendly experience. The `SetupScreen` dynamically parses this README file to provide up-to-date tracker descriptions.
+-   **Tracking Logic (`OpenCV`)**: The `run_object_tracking` function encapsulates all computer vision operations, including video capture, ROI selection, and the real-time tracking loop.
